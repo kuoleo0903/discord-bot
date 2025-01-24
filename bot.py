@@ -11,10 +11,10 @@ load_dotenv()
 
 bot = discord.Bot(intents=discord.Intents.all())
 
-# 假設您要將時間轉換為台北時間
+# 轉換為台北時區
 taipei_tz = pytz.timezone('Asia/Taipei')
     
-# 取得當前 UTC 時間並轉換為台北時間
+# 取得當前 UTC 時間並轉換為台北時區
 utc_now = datetime.now(pytz.utc)
 taipei_now = utc_now.astimezone(taipei_tz)
 
@@ -38,7 +38,7 @@ async def on_message(message):
     if message.content.startswith("hello"):
         await message.channel.send("Hello! How are you?")
 
-AUTHORIZED_USER_ID = 439814891176460299  # 替換成你的 Discord 使用者 ID
+AUTHORIZED_USER_ID = int(getenv("AUTHORIZED_USER_ID"))  # Discord 使用者 ID
 
 # ----------------------------------------------------------------------------
 
