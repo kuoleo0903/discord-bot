@@ -13,7 +13,7 @@ class ping(Cog_Extension):
 
     # ----------------------------------------------------------------------------
 
-    def get_public_ip():
+    def get_public_ip(self):
         """從外部 API 獲取伺服器的對外 IP"""
         try:
             response = requests.get("https://api.ipify.org?format=text")
@@ -24,11 +24,11 @@ class ping(Cog_Extension):
         except Exception as e:
             return f"發生錯誤: {e}"
 
-    @bot.slash_command(description="取得伺服器的對外 IP")
+    @discord.bot.slash_command(self, description="取得伺服器的對外 IP")
     async def get_server_ip(ctx):
         """處理 /get_server_ip 指令"""
         if ctx.author.id == AUTHORIZED_USER_ID:
-            ip = get_public_ip()
+            ip = self.get_public_ip()
             try:
                 if ctx.channel.type == discord.ChannelType.private:
                     await ctx.respond(f"伺服器的對外 IP 是：{ip}")
@@ -42,7 +42,7 @@ class ping(Cog_Extension):
             
     # ----------------------------------------------------------------------------
 
-    @bot.slash_command(description="查看機器人是否上線")
+    @discord.bot.slash_command(description="查看機器人是否上線")
     async def check_online(ctx):
         """處理 /check_online 指令"""
         await ctx.respond("機器人正常運行中！")
