@@ -3,6 +3,7 @@ from discord.errors import NotFound
 import requests
 from datetime import datetime
 from os import getenv
+import os
 import json
 from dotenv import load_dotenv
 import pytz
@@ -30,4 +31,9 @@ async def on_ready():
 AUTHORIZED_USER_ID = 439814891176460299  # 替換成你的 Discord 使用者 ID
 
 
-bot.run(getenv("TOKEN"))
+for filename in os.listdir("cmds"):
+    if filename.endswith(".py"):
+        bot.load_extension(f"cmds.{filename[:-3]}")
+
+if __name__ == "__main__":
+    bot.run(getenv("TOKEN"))

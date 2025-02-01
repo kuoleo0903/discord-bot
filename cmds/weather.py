@@ -9,7 +9,7 @@ from core.classes import Cog_Extension
 
 class Weather(Cog_Extension):
     # 讀取地點資訊
-    def get_location_json():
+    def get_location_json(self):
         try:
             with open("location.json", "r", encoding="utf-8") as f:
                 locations = json.load(f)
@@ -62,7 +62,7 @@ class Weather(Cog_Extension):
             else:  # 單一數值
                 embed.add_field(name=element, value=value, inline=True)
 
-    def format_time(datetime_str):
+    def format_time(self, datetime_str):
         """格式化時間字串為指定的樣式"""
         try:
             # 解析 ISO 8601 格式的時間字串
@@ -73,7 +73,7 @@ class Weather(Cog_Extension):
             return "無效時間"
 
     # 定義指令
-    @discord.bot.slash_command(name="weather_location_select", description="查找天氣")
+    @discord.bot.slash_command(self, name="weather_location_select", description="查找天氣")
     async def choose_location(interaction: discord.Interaction, location: discord.Option(str, "選擇要查找天氣的地方", choices=get_location_json())):
         try:
             # 取得選中的地點資料
@@ -83,7 +83,7 @@ class Weather(Cog_Extension):
             SID = selected_location["SID"]
 
             # 查詢天氣資料
-            obs_time, weather_elements = get_weather(SID)
+            obs_time, weather_elements = self.get_weather(SID)
 
             # 建立嵌入式回應
             embed = discord.Embed(
