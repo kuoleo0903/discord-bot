@@ -2,7 +2,6 @@ import discord
 import pytz
 from datetime import datetime
 from discord.ext import commands
-
 from dotenv import load_dotenv
 import os
 
