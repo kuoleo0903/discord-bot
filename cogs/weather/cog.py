@@ -106,6 +106,28 @@ class Weather(BaseCog):
             await ctx.respond(embed=embed)
         except Exception as e:
             await ctx.respond(f"發生錯誤：{str(e)}")
+            
+    def get_weather(self, SID):
+        dataid = "F-D0047-093"
+        apikey = "CWA-AF4F6A85-AA80-4DF8-8813-DC6680D59934"
+        url = f"https://opendata.cwa.gov.tw/api/v1/rest/datastore/{dataid}"
+        params = {
+            "Authorization": apikey,
+            "format": "json",
+            "stationId": SID, # 65 高雄 77 台南
+        }
+        response = requests.get(url, params=params)
+        if response.status_code == 200:
+            data = response.json()
+            try:
+                station_data = data["records"]["Station"][0]  # 假設只返回一個站點
+                obs_time = self.format_time(station_data["ObsTime"]["DateTime"])  # 查詢時間
+                weather_elements = station_data["WeatherElement"]
+                return obs_time, weather_elements
+            except (KeyError, IndexError):
+                return "無法解析資料，請檢查 API 回應格式", {}
+        else:
+            return "無法取得資料，請稍後再試", {}
 
 def setup(bot):
     bot.add_cog(Weather(bot))

@@ -31,11 +31,16 @@ async def on_ready():
         await user.send(f"Hi! 機器人已上線")
 
 # 載入 Cogs
-initial_extensions = ["cogs.ping", "cogs.weather"]
-
 if __name__ == "__main__":
-    for extension in initial_extensions:
-        bot.load_extension(extension)
+    for cog_dir in os.listdir("cogs"):
+        cog_path = os.path.join("cogs", cog_dir, "cog.py")
+        if os.path.isfile(cog_path):
+            extension_path = f"cogs.{cog_dir}.cog"
+            try:
+                bot.load_extension(extension_path)
+                print(f"✅ 成功載入: {extension_path}")
+            except Exception as e:
+                print(f"❌ 載入失敗 {extension_path}: {e}")
 
 # 啟動機器人
 TOKEN = os.getenv("TOKEN")
