@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ## 專案目錄
+=======
+
+>>>>>>> 417bea3 (docker add)
 ```
 discord-bot
 ├─ .dockerignore
