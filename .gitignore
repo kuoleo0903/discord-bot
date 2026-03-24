@@ -1,8 +1,0 @@
-.venv
-*.pdf
-.vscode
-.env
-SCIST寒訓
-**__pycache__
-*weather*.json
-*user_data*.json
