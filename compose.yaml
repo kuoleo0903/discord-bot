@@ -1,0 +1,7 @@
+services:
+  discordbot:
+    image: discordbot
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always

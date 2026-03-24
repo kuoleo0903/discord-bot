@@ -3,7 +3,7 @@ import json
 import requests
 from datetime import datetime
 from discord.ext import commands
-from core.classes import BaseCog  # 匯入 BaseCog
+from core.classes import BaseCog
 from dotenv import load_dotenv
 import os
 

@@ -4,4 +4,5 @@
 .env
 SCIST寒訓
 **__pycache__
-**.json
+*weather*.json
+*user_data*.json
