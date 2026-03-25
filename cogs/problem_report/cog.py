@@ -1,8 +1,10 @@
 import discord
 from discord.ext import commands
 from core.classes import BaseCog
+from os import getenv
 class ReportModal(discord.ui.Modal):
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, bot, *args, **kwargs) -> None:
+        self.bot = bot
         super().__init__(*args, **kwargs)
 
         # 添加表單欄位
@@ -23,8 +25,8 @@ class ReportModal(discord.ui.Modal):
     async def callback(self, interaction: discord.Interaction):
         """當使用者點擊送出後的處理邏輯"""
         # 回報頻道
-        REPORT_CHANNEL_ID = 1368611180423417856
-        channel = interaction.guild.get_channel(REPORT_CHANNEL_ID)
+        REPORT_CHANNEL_ID = int(getenv("REPORT_CHANNEL_ID"))
+        channel = self.bot.get_channel(REPORT_CHANNEL_ID)
 
         # 建立回報 Embed
         embed = discord.Embed(
@@ -53,7 +55,7 @@ class ProblemReport(BaseCog):
     async def problem_report(self, ctx: discord.ApplicationContext):
         """處理 /problem_report 指令"""
         # 發送表單
-        modal = ReportModal(title="問題回報表單")
+        modal = ReportModal(bot=self.bot, title="問題回報表單")
         await ctx.send_modal(modal)
 
 def setup(bot):
