@@ -55,11 +55,7 @@ class ProblemReport(BaseCog):
     async def problem_report(self, ctx: discord.ApplicationContext):
         """處理 /problem_report 指令"""
         # 發送表單
-<<<<<<< HEAD
         modal = ReportModal(bot=self.bot, title="問題回報表單")
-=======
-        modal = ReportModal(title="問題回報表單")
->>>>>>> 417bea3 (docker add)
         await ctx.send_modal(modal)
 
 def setup(bot):
