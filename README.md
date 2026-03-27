@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [繁體中文](README_zh-TW.md)
 
 ## Table of Contents
@@ -12,6 +13,14 @@
 ## Project Structure
 
 ```text
+=======
+<<<<<<< HEAD
+## 專案目錄
+=======
+
+>>>>>>> 417bea3 (docker add)
+```
+>>>>>>> 3078d452b0fee96af1018127c733e1fb7e9c8deb
 discord-bot
 ├─ .dockerignore
 ├─ bot.py                               # Main entry point
