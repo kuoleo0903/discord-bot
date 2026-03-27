@@ -1,0 +1,20 @@
+{
+    "locations": [
+        {
+            "name": "地區",
+            "SID": "YOUR_SID"
+        },
+        {
+            "name": "地區",
+            "SID": "YOUR_SID"
+        },
+        {
+            "name": "地區區",
+            "SID": "YOUR_SID"
+        },
+        {
+            "name": "地區",
+            "SID": "YOUR_SID"
+        }
+    ]
+}

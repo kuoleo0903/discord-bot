@@ -60,6 +60,7 @@ api_key=your_api_key
 REPORT_CHANNEL_ID=your_report_channel_id
 ```
 
+Please update `location_example.json` with your preferred location.
 
 > **Security Note:** Always add `.env` to your `.gitignore` to avoid leaking sensitive credentials.
 
